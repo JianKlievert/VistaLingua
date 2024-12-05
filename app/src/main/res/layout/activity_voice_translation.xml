@@ -3,26 +3,48 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/transbg"
+    android:background="@drawable/fortransbg"
     android:padding="16dp">
 
     <Spinner
         android:id="@+id/sourceLanguageSpinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
+        style="@style/CustomSpinnerStyle"
+        android:padding="4dp"
+        app:layout_constraintEnd_toStartOf="@+id/swapLanguagesButton"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/swapLanguagesButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="3dp"
+        android:background="@drawable/ic_bidirectional_arrow"
+        android:contentDescription="@string/swap_languages"
+        android:insetLeft="0dp"
+        android:insetTop="0dp"
+        android:insetRight="0dp"
+        android:insetBottom="0dp"
+        android:padding="0dp"
+        app:backgroundTint="@color/purple_700"
+        app:layout_constraintBottom_toBottomOf="@+id/sourceLanguageSpinner"
         app:layout_constraintEnd_toStartOf="@+id/targetLanguageSpinner"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/sourceLanguageSpinner"
+        app:layout_constraintTop_toTopOf="@+id/sourceLanguageSpinner" />
 
     <Spinner
         android:id="@+id/targetLanguageSpinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        style="@style/CustomSpinnerStyle"
+        android:padding="4dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/sourceLanguageSpinner"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/swapLanguagesButton"/>
 
     <TextView
         android:id="@+id/statusText"
@@ -31,7 +53,7 @@
         android:layout_marginTop="32dp"
         android:text="Press and hold to record"
         android:textSize="16sp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sourceLanguageSpinner" />

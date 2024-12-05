@@ -13,7 +13,6 @@ import java.util.Map;
 
 public class TranslationService {
     private static final String TAG = "TranslationService";
-    private static final String API_URL = "https://api.mymemory.translated.net/get";
     private static final OkHttpClient client = new OkHttpClient();
     private static final Gson gson = new Gson();
 
@@ -50,19 +49,20 @@ public class TranslationService {
 
     private static String buildTranslationUrl(String text, String sourceLang, String targetLang) {
         try {
-            // Clean and encode the text
+            // Enhanced text cleaning for better translation accuracy
             String cleanedText = text.trim()
-                                   .replaceAll("\\s+", " ")  // Replace multiple spaces with single space
-                                   .replaceAll("[\\p{Punct}&&[^']]", ""); // Remove punctuation except apostrophes
-            
+                               .replaceAll("\\s+", " ")  // Replace multiple spaces with single space
+                               .replaceAll("[\\p{Punct}&&[^',.!?]]", ""); // Keep essential punctuation
+
             String encodedText = URLEncoder.encode(cleanedText, "UTF-8");
             
+            // Add additional parameters for better translation quality
             return String.format(
-                "https://api.mymemory.translated.net/get?q=%s&langpair=%s|%s&de=example@email.com",
+                "https://api.mymemory.translated.net/get?q=%s&langpair=%s|%s&de=example@email.com&mt=1",
                 encodedText, sourceLang, targetLang
             );
         } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+            Log.e(TAG, "Error encoding text: " + e.getMessage());
             return null;
         }
     }
@@ -88,6 +88,7 @@ public class TranslationService {
 
                     Request request = new Request.Builder()
                             .url(url)
+                            .addHeader("Accept", "application/json")
                             .build();
 
                     try (Response response = client.newCall(request).execute()) {
@@ -100,13 +101,25 @@ public class TranslationService {
                         
                         if (jsonResponse.has("responseData") && 
                             jsonResponse.getAsJsonObject("responseData").has("translatedText")) {
-                            return jsonResponse.getAsJsonObject("responseData")
-                                    .get("translatedText").getAsString();
+                            
+                            JsonObject responseObj = jsonResponse.getAsJsonObject("responseData");
+                            String translatedText = responseObj.get("translatedText").getAsString();
+                            
+                            // Check for translation quality
+                            if (jsonResponse.has("responseStatus")) {
+                                int status = jsonResponse.get("responseStatus").getAsInt();
+                                if (status < 200 || status >= 300) {
+                                    Log.w(TAG, "Translation may not be optimal. Status: " + status);
+                                }
+                            }
+
+                            return translatedText;
                         } else {
                             throw new Exception("Invalid response format");
                         }
                     }
                 } catch (Exception e) {
+                    Log.e(TAG, "Translation error: " + e.getMessage());
                     this.exception = e;
                     return null;
                 }

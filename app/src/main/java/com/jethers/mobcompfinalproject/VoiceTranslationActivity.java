@@ -40,6 +40,7 @@ public class VoiceTranslationActivity extends AppCompatActivity implements TextT
     private MaterialButton speakTranslatedText;
     private Spinner sourceLanguageSpinner;
     private Spinner targetLanguageSpinner;
+    private MaterialButton swapLanguagesButton;
     private boolean hasRecordPermission = false;
 
     @Override
@@ -57,6 +58,7 @@ public class VoiceTranslationActivity extends AppCompatActivity implements TextT
         speakTranslatedText = findViewById(R.id.speakTranslatedText);
         sourceLanguageSpinner = findViewById(R.id.sourceLanguageSpinner);
         targetLanguageSpinner = findViewById(R.id.targetLanguageSpinner);
+        swapLanguagesButton = findViewById(R.id.swapLanguagesButton);
 
         // Check for record audio permission
         checkPermission();
@@ -185,6 +187,26 @@ public class VoiceTranslationActivity extends AppCompatActivity implements TextT
         // Set up speak buttons
         speakRecognizedText.setOnClickListener(v -> speakRecognizedText());
         speakTranslatedText.setOnClickListener(v -> speakTranslatedText());
+
+        // Set up swap languages button
+        swapLanguagesButton.setOnClickListener(v -> {
+            int sourcePosition = sourceLanguageSpinner.getSelectedItemPosition();
+            int targetPosition = targetLanguageSpinner.getSelectedItemPosition();
+            
+            sourceLanguageSpinner.setSelection(targetPosition);
+            targetLanguageSpinner.setSelection(sourcePosition);
+
+            // Swap texts if they exist
+            String sourceText = recognizedText.getText().toString();
+            String targetText = translatedText.getText().toString();
+            
+            if (!sourceText.isEmpty() && !targetText.isEmpty() &&
+                !sourceText.equals(getString(R.string.recognized_text_hint)) &&
+                !targetText.equals(getString(R.string.translated_text_hint))) {
+                recognizedText.setText(targetText);
+                translatedText.setText(sourceText);
+            }
+        });
     }
 
     private void checkPermission() {

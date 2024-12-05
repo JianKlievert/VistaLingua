@@ -11,7 +11,9 @@ import android.provider.MediaStore;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -49,6 +51,7 @@ public class TextTranslationActivity extends AppCompatActivity implements TextTo
     private MaterialButton speakTranslatedText;
     private Spinner sourceLanguageSpinner;
     private Spinner targetLanguageSpinner;
+    private Button swapLanguagesButton;
 
     private Bitmap currentImageBitmap;
     private TextRecognizer textRecognizer;
@@ -74,6 +77,7 @@ public class TextTranslationActivity extends AppCompatActivity implements TextTo
         speakTranslatedText = findViewById(R.id.speakTranslatedText);
         sourceLanguageSpinner = findViewById(R.id.sourceLanguageSpinner);
         targetLanguageSpinner = findViewById(R.id.targetLanguageSpinner);
+        swapLanguagesButton = findViewById(R.id.swapLanguagesButton);
 
         // Make EditTexts scrollable
         extractedText.setMovementMethod(new ScrollingMovementMethod());
@@ -112,6 +116,26 @@ public class TextTranslationActivity extends AppCompatActivity implements TextTo
             sourceLanguageSpinner.getSelectedItem().toString()));
         speakTranslatedText.setOnClickListener(v -> speakText(translatedText.getText().toString(), 
             targetLanguageSpinner.getSelectedItem().toString()));
+
+        // Set click listener for swap languages button
+        swapLanguagesButton.setOnClickListener(v -> {
+            int sourcePosition = sourceLanguageSpinner.getSelectedItemPosition();
+            int targetPosition = targetLanguageSpinner.getSelectedItemPosition();
+            
+            sourceLanguageSpinner.setSelection(targetPosition);
+            targetLanguageSpinner.setSelection(sourcePosition);
+
+            // Swap texts if they exist
+            String sourceText = extractedText.getText().toString();
+            String targetText = translatedText.getText().toString();
+            
+            if (!sourceText.isEmpty() && !targetText.isEmpty() &&
+                !sourceText.equals(getString(R.string.extracted_text_hint)) &&
+                !targetText.equals(getString(R.string.translated_text_hint))) {
+                extractedText.setText(targetText);
+                translatedText.setText(sourceText);
+            }
+        });
     }
 
     private void initializeActivityResultLaunchers() {
