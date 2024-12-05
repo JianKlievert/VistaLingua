@@ -53,6 +53,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
+            style="@style/CustomSpinnerStyle"
+            android:padding="4dp"
             app:layout_constraintEnd_toStartOf="@+id/targetLanguageSpinner"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imagePreview" />
@@ -63,6 +65,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
+            style="@style/CustomSpinnerStyle"
+            android:padding="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/sourceLanguageSpinner"
             app:layout_constraintTop_toBottomOf="@+id/imagePreview" />
@@ -88,7 +92,9 @@
                 android:maxHeight="200dp"
                 android:minHeight="60dp"
                 android:padding="8dp"
-                android:scrollbars="vertical" />
+                android:scrollbars="vertical"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="12sp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/speakExtractedText"
@@ -127,7 +133,9 @@
                 android:maxHeight="200dp"
                 android:minHeight="60dp"
                 android:padding="8dp"
-                android:scrollbars="vertical" />
+                android:scrollbars="vertical"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="12sp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/speakTranslatedText"
