@@ -172,6 +172,7 @@ public class VoiceTranslationActivity extends AppCompatActivity implements TextT
                     }
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     stopListening();
+                    statusText.setText("Press and hold to record");
                 }
                 return false;
             });
