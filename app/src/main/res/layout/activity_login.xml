@@ -25,7 +25,7 @@
         android:textSize="35sp"
         android:textStyle="bold"
         android:textColor="@android:color/black"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toTopOf="@id/EmailLayout"
         app:layout_constraintStart_toStartOf="@id/EmailLayout"
         app:layout_constraintEnd_toEndOf="@id/EmailLayout"/>
