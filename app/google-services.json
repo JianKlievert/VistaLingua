@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "198358717981",
+    "project_id": "vistalingua-f05f3",
+    "storage_bucket": "vistalingua-f05f3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:198358717981:android:90e755eeff44fdf575d8f4",
+        "android_client_info": {
+          "package_name": "com.jethers.mobcompfinalproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0T6LjyDuDvpQzgbGgwYDoTs0lVwm6VgQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

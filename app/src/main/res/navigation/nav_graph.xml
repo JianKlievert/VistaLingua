@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/navigation_camera">
+
+    <fragment
+        android:id="@+id/navigation_camera"
+        android:name="com.jethers.mobcompfinalproject.ui.camera.CameraTranslationFragment"
+        android:label="Camera Translation" />
+
+    <fragment
+        android:id="@+id/navigation_voice"
+        android:name="com.jethers.mobcompfinalproject.ui.voice.VoiceTranslationFragment"
+        android:label="Voice Translation" />
+
+    <fragment
+        android:id="@+id/navigation_history"
+        android:name="com.jethers.mobcompfinalproject.ui.history.TranslationHistoryFragment"
+        android:label="Translation History" />
+
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.jethers.mobcompfinalproject.ui.settings.SettingsFragment"
+        android:label="Settings" />
+
+</navigation>
