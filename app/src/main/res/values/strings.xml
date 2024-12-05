@@ -29,4 +29,6 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="swap_languages">Swap Languages</string>
+    <string name="vistalingua">VistaLingua</string>
+    <string name="vistalingualogin">VistaLingua</string>
 </resources>

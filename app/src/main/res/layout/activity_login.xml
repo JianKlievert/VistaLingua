@@ -5,6 +5,20 @@
     android:background="@drawable/loginsignupbg"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <TextView
+        android:id="@+id/loginTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/vistalingualogin"
+        android:fontFamily="@font/appfont"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toTopOf="@id/EmailLayout"
+        app:layout_constraintStart_toStartOf="@id/EmailLayout"
+        app:layout_constraintEnd_toEndOf="@id/EmailLayout"/>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/EmailLayout"
         android:layout_width="wrap_content"

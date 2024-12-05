@@ -6,11 +6,25 @@
     android:background="@drawable/loginsignupbg"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <TextView
+        android:id="@+id/signupTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/vistalingua"
+        android:fontFamily="@font/appfont"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="7dp"
+        app:layout_constraintBottom_toTopOf="@id/EmailLayout"
+        app:layout_constraintStart_toStartOf="@id/EmailLayout"
+        app:layout_constraintEnd_toEndOf="@id/EmailLayout"/>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/EmailLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="230dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -41,7 +55,7 @@
             android:layout_width="250dp"
             android:layout_height="60dp"
             android:inputType="textPassword"
-            android:hint="@string/password"/>
+            android:hint="@string/password" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -62,7 +76,7 @@
             android:layout_width="250dp"
             android:layout_height="60dp"
             android:inputType="textPassword"
-            android:hint="@string/confirm_password"/>
+            android:hint="@string/confirm_password" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
